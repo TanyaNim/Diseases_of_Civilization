@@ -197,6 +197,11 @@ base_dir = "/Users/dr.t/Desktop/streamlit_trials/pics"
 # Check and display the current working directory
 st.write("Current Working Directory:", os.getcwd())
 
+img_path = "female_transparent.png"
+full_img_path = os.path.join(os.getcwd(), img_path)
+print(f"Full image path: {full_img_path}")
+img_female = get_image_base64(img_path)
+
 def get_image_base64(img_filename):
     img_path = os.path.join(base_dir, img_filename)
     with open(img_path, "rb") as img_file:
