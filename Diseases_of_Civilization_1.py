@@ -5,6 +5,9 @@ import base64
 from PIL import Image
 import base64
 from io import BytesIO
+import os
+
+
 
 
 # ------------------ Load data for MAP ------------------
@@ -190,14 +193,18 @@ left_col, right_col = st.columns([2, 3])
 
 # ---------------Obesity donuts---------------
 # Load images
-def get_image_base64(img_path):
+base_dir = "/Users/dr.t/Desktop/streamlit_trials/pics"
+
+def get_image_base64(img_filename):
+    img_path = os.path.join(base_dir, img_filename)
     with open(img_path, "rb") as img_file:
         img_bytes = img_file.read()
         encoded = base64.b64encode(img_bytes).decode()
     return f"data:image/png;base64,{encoded}"
 
-img_female = get_image_base64("/Users/dr.t/Desktop/streamlit_trials/pics/female_transparent.png")
-img_male = get_image_base64("/Users/dr.t/Desktop/streamlit_trials/pics/male_transparent.png")
+
+img_female = get_image_base64("female_transparent.png")
+img_male = get_image_base64("male_transparent.png")
 
 # Colors for slices
 colors = [
@@ -391,10 +398,11 @@ with right_col:
         """, unsafe_allow_html=True)
 # ------------------------DISEASE PREVALENCE IN OBESE PEOPLE----------------------
 # === File paths ===
-female_path = "/Users/dr.t/Desktop/streamlit_trials/pics/female_violet.png"
-male_path = "/Users/dr.t/Desktop/streamlit_trials/pics/male_violet.png"
-female_yellow_path = "/Users/dr.t/Desktop/streamlit_trials/pics/female_yellow.png"  
-male_yellow_path = "/Users/dr.t/Desktop/streamlit_trials/pics/male_yellow.png"  
+pics_dir = os.path.join(os.getcwd(), "pics")
+female_path = os.path.join(pics_dir, "female_violet.png")
+male_path = os.path.join(pics_dir, "male_violet.png")
+female_yellow_path = os.path.join(pics_dir, "female_yellow.png")
+male_yellow_path = os.path.join(pics_dir, "male_yellow.png")
 
 # === Load and resize ===
 female_icon = Image.open(female_path).resize((30, 60))
