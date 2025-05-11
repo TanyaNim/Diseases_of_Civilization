@@ -210,9 +210,6 @@ def get_image_base64(img_filename):
 img_female = get_image_base64("female_transparent.png")
 img_male = get_image_base64("male_transparent.png")
 
-# Optionally display the images in Streamlit (for debugging)
-st.image(img_female)
-st.image(img_male)
 # Colors for slices
 colors = [
     "rgba(185, 128, 237, 1)",  # Normal weight (violet)
