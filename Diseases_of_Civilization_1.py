@@ -193,26 +193,26 @@ left_col, right_col = st.columns([2, 3])
 
 # ---------------Obesity donuts---------------
 # Load images
-base_dir = "/Users/dr.t/Desktop/streamlit_trials/pics"
+# Ensure that the 'pics' directory is in the same folder as your main Streamlit app file
+base_dir = os.path.join(os.path.dirname(__file__), "pics")  # This will be dynamic for both local and cloud
+
 # Check and display the current working directory
 st.write("Current Working Directory:", os.getcwd())
 
-img_path = "female_transparent.png"
-full_img_path = os.path.join(os.getcwd(), img_path)
-print(f"Full image path: {full_img_path}")
-img_female = get_image_base64(img_path)
-
 def get_image_base64(img_filename):
-    img_path = os.path.join(base_dir, img_filename)
+    img_path = os.path.join(base_dir, img_filename)  # Use the dynamic path
     with open(img_path, "rb") as img_file:
         img_bytes = img_file.read()
         encoded = base64.b64encode(img_bytes).decode()
     return f"data:image/png;base64,{encoded}"
 
-
+# Display the full image path for debugging
 img_female = get_image_base64("female_transparent.png")
 img_male = get_image_base64("male_transparent.png")
 
+# Optionally display the images in Streamlit (for debugging)
+st.image(img_female)
+st.image(img_male)
 # Colors for slices
 colors = [
     "rgba(185, 128, 237, 1)",  # Normal weight (violet)
