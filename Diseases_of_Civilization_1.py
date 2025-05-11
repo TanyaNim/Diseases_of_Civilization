@@ -194,6 +194,8 @@ left_col, right_col = st.columns([2, 3])
 # ---------------Obesity donuts---------------
 # Load images
 base_dir = "/Users/dr.t/Desktop/streamlit_trials/pics"
+# Check and display the current working directory
+st.write("Current Working Directory:", os.getcwd())
 
 def get_image_base64(img_filename):
     img_path = os.path.join(base_dir, img_filename)
